@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/froststrap-logo.png";
 import Github from "@/assets/github-mark.svg";
+import formatCompactNumber from "@/lib/formatNumber";
 
 interface ReleaseData {
   version: string;
@@ -27,7 +28,6 @@ export default function Home() {
   // new state for download action
   const [isDownloading, setIsDownloading] = useState(false);
 
-  // repo constants moved to component scope so handler and effect can use them
   const repoOwner = "RealMeddsam";
   const repoName = "Froststrap";
   const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
@@ -41,7 +41,7 @@ export default function Home() {
           Authorization: `${GITHUB_TOKEN}`,
           Accept: "application/json",
         },
-      }
+      },
     )
       .then((res) => res.json())
       .then((data) => {
@@ -51,7 +51,7 @@ export default function Home() {
           latestDownloadCount = data.assets.reduce(
             (acc: number, asset: { download_count?: number }) =>
               acc + (asset.download_count || 0),
-            0
+            0,
           );
         }
         setReleaseData({ version, latestDownloads: latestDownloadCount });
@@ -72,7 +72,7 @@ export default function Home() {
         const license = data.license?.spdx_id || "Unknown";
         setRepoStats((prev) => ({ ...prev, license }));
         return fetch(
-          `https://api.github.com/repos/${repoOwner}/${repoName}/releases`
+          `https://api.github.com/repos/${repoOwner}/${repoName}/releases`,
         );
       })
       .then((res) => res.json())
@@ -84,10 +84,10 @@ export default function Home() {
               totalDownloads += release.assets.reduce(
                 (acc: number, asset: { download_count?: number }) =>
                   acc + (asset.download_count || 0),
-                0
+                0,
               );
             }
-          }
+          },
         );
         setRepoStats((prev) => ({ ...prev, totalDownloads }));
       })
@@ -107,14 +107,14 @@ export default function Home() {
             Authorization: `Bearer ${GITHUB_TOKEN}`,
             Accept: "application/json",
           },
-        }
+        },
       );
       if (!res.ok) throw new Error("Failed to fetch latest release");
       const data = await res.json();
       const assets = data.assets || [];
       const exeAsset = assets.find(
         (a: { name?: string }) =>
-          a.name && a.name.toLowerCase().endsWith(".exe")
+          a.name && a.name.toLowerCase().endsWith(".exe"),
       );
       if (!exeAsset) {
         alert("No .exe asset found for the latest release.");
@@ -126,7 +126,7 @@ export default function Home() {
     } catch (err) {
       console.error(err);
       alert(
-        "Failed to download the latest release. Check console for details."
+        "Failed to download the latest release. Check console for details.",
       );
     } finally {
       setIsDownloading(false);
@@ -280,40 +280,85 @@ export default function Home() {
                 href="https://github.com/RealMeddsam/Froststrap/blob/main/LICENSE"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg text-sm hover:bg-secondary/80 transition-colors"
+                className="inline-flex items-center gap-3 bg-secondary text-secondary-foreground rounded-lg text-sm hover:bg-secondary/80 transition-colors px-3 py-1.5 min-w-0"
               >
-                License:{" "}
-                <span className="font-semibold text-primary">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.5 2A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h13.25a.75.75 0 0 0 0-1.5H6.5a1 1 0 0 1-1-1h14.25a.75.75 0 0 0 .75-.75V4.5A2.5 2.5 0 0 0 18 2H6.5ZM8 5h8a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"
+                    fill="#fff"
+                  />
+                </svg>
+                <a> | </a>
+                <span className="text-muted-foreground text-xs">License</span>
+                <span className="font-semibold text-primary truncate max-w-[8rem]">
                   {repoStats.license}
                 </span>
               </a>
+
               <a
                 href="https://github.com/RealMeddsam/Froststrap/releases/latest"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg text-sm hover:bg-secondary/80 transition-colors"
+                className="inline-flex items-center gap-3 bg-secondary text-secondary-foreground rounded-lg text-sm hover:bg-secondary/80 transition-colors px-3 py-1.5 min-w-0"
               >
-                Latest Downloads:{" "}
-                <span className="font-semibold text-primary">
-                  {releaseData.latestDownloads.toLocaleString()}
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.087 7.75a5.752 5.752 0 0 1 11.326 0h.087a4 4 0 0 1 3.962 4.552 6.501 6.501 0 0 0-11.42 3.448H6a4 4 0 0 1 0-8h.087ZM22 16.5a5.5 5.5 0 1 0-11 0 5.5 5.5 0 0 0 11 0Zm-6-3a.5.5 0 0 1 1 0v4.793l1.646-1.647a.5.5 0 0 1 .708.708l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5a.5.5 0 0 1 .708-.708L16 18.293V13.5Z"
+                    fill="#fff"
+                  />
+                </svg>
+                <a> | </a>
+                <span className="text-muted-foreground text-xs">
+                  Latest Downloads
+                </span>
+                <span className="font-semibold text-primary truncate max-w-[8rem]">
+                  {formatCompactNumber(releaseData.latestDownloads)}
                 </span>
               </a>
+
               <a
                 href="https://github.com/RealMeddsam/Froststrap"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg text-sm hover:bg-secondary/80 transition-colors"
+                className="inline-flex items-center gap-3 bg-secondary text-secondary-foreground rounded-lg text-sm hover:bg-secondary/80 transition-colors px-3 py-1.5 min-w-0"
               >
-                Total Downloads:{" "}
-                <span className="font-semibold text-primary">
-                  {repoStats.totalDownloads.toLocaleString()}
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.25 20.5h13.498a.75.75 0 0 1 .101 1.493l-.101.007H5.25a.75.75 0 0 1-.102-1.494l.102-.006h13.498H5.25Zm6.633-18.498L12 1.995a1 1 0 0 1 .993.883l.007.117v12.59l3.294-3.293a1 1 0 0 1 1.32-.083l.094.084a1 1 0 0 1 .083 1.32l-.083.094-4.997 4.996a1 1 0 0 1-1.32.084l-.094-.083-5.004-4.997a1 1 0 0 1 1.32-1.498l.094.083L11 15.58V2.995a1 1 0 0 1 .883-.993L12 1.995l-.117.007Z"
+                    fill="#fff"
+                  />
+                </svg>
+                <a> | </a>
+                <span className="text-muted-foreground text-xs">
+                  Total Downloads
+                </span>
+                <span className="font-semibold text-primary truncate max-w-[8rem]">
+                  {formatCompactNumber(repoStats.totalDownloads)}
                 </span>
               </a>
             </div>
           </div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
             <div className="p-6 bg-card border border-border rounded-lg hover:border-primary transition-colors">
               <div className="flex items-start gap-3">
                 <svg
@@ -460,6 +505,31 @@ export default function Home() {
                   <p className="text-muted-foreground">
                     Froststrap Rich Presence that also tracks the page you're
                     on.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="p-6 bg-card border border-border rounded-lg hover:border-primary transition-colors">
+              <div className="flex items-start gap-3">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m3.5 14 10 .001a1.5 1.5 0 0 1 1.493 1.356L15 15.5V17.5C14.999 21 11.284 22 8.5 22c-2.722 0-6.335-.956-6.495-4.27L2 17.5v-2a1.5 1.5 0 0 1 1.356-1.493L3.5 14Zm11.988 0H20.5a1.5 1.5 0 0 1 1.493 1.355L22 15.5V17c-.001 3.062-2.858 4-5 4a7.16 7.16 0 0 1-2.14-.322c.653-.75 1.076-1.703 1.133-2.898L16 17.5v-2c0-.494-.15-.951-.399-1.338L15.488 14H20.5h-5.012ZM8.5 3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm9 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Z"
+                    fill="#fff"
+                  />
+                </svg>
+
+                <div>
+                  <h3 className="text-xl font-semibold mb-1 text-card-foreground">
+                    Account Manager
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Easily switch between accounts for extra functionality{" "}
                   </p>
                 </div>
               </div>
