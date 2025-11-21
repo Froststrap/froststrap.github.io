@@ -1,5 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { NavLink, Outlet, useNavigate, Link, useLocation } from "react-router-dom";
+import {
+  NavLink,
+  Outlet,
+  useNavigate,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import { Search, Menu, ChevronRight, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +13,6 @@ import { searchContent, SearchResult } from "@/lib/searchData";
 import { useTheme } from "@/components/ThemeProvider";
 import { TableOfContents } from "@/components/TableOfContents";
 import froststrap from "@/assets/froststrap-logo.png";
-
 interface NavItem {
   title: string;
   path?: string;
@@ -85,7 +90,9 @@ const NavSection = ({ item }: { item: NavItem }) => {
         end
         className={({ isActive }) =>
           `block px-3 py-2 text-base font-semibold rounded-md transition-colors ${
-            isActive ? "bg-primary/10 text-primary" : "text-sidebar-foreground hover:bg-sidebar-accent"
+            isActive
+              ? "bg-primary/10 text-primary"
+              : "text-sidebar-foreground hover:bg-sidebar-accent"
           }`
         }
       >
@@ -117,7 +124,10 @@ export const DocsLayout = () => {
   /** Click outside search */
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
         setShowSearchResults(false);
       }
     };
@@ -163,7 +173,9 @@ export const DocsLayout = () => {
   };
 
   const handleSearchResultClick = (result: SearchResult) => {
-    const path = result.anchor ? `${result.path}#${result.anchor}` : result.path;
+    const path = result.anchor
+      ? `${result.path}#${result.anchor}`
+      : result.path;
     navigate(path);
     setShowSearchResults(false);
     setSearchQuery("");
@@ -234,7 +246,8 @@ export const DocsLayout = () => {
     const mainEl = mainScrollRef.current;
     const externalInner = externalScrollInnerRef.current;
     if (!mainEl || !externalInner) return;
-    const handler = () => (externalInner.style.height = `${mainEl.scrollHeight}px`);
+    const handler = () =>
+      (externalInner.style.height = `${mainEl.scrollHeight}px`);
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, []);
@@ -244,11 +257,19 @@ export const DocsLayout = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b border-border bg-sidebar/95 backdrop-blur supports-[backdrop-filter]:bg-sidebar/60">
         <div className="flex h-16 items-center justify-between px-6">
-          <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)} className="md:hidden h-9 w-9">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="md:hidden h-9 w-9"
+          >
             <Menu className="h-5 w-5" />
           </Button>
 
-          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <Link
+            to="/"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          >
             <img src={froststrap} alt="Froststrap" className="h-10 w-10" />
             <span className="font-bold text-xl">Froststrap</span>
           </Link>
@@ -263,7 +284,9 @@ export const DocsLayout = () => {
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
                 onKeyDown={handleKeyDown}
-                onFocus={() => searchQuery.length >= 2 && setShowSearchResults(true)}
+                onFocus={() =>
+                  searchQuery.length >= 2 && setShowSearchResults(true)
+                }
               />
               {searchQuery && (
                 <button
@@ -290,24 +313,39 @@ export const DocsLayout = () => {
                       className="w-full text-left px-4 py-3 hover:bg-accent transition-colors border-b border-border last:border-b-0"
                     >
                       <div className="font-medium text-sm">{result.title}</div>
-                      {result.section && <div className="text-xs text-muted-foreground mt-1">{result.section}</div>}
-                      <div className="text-xs text-muted-foreground mt-1 line-clamp-2">{result.content}</div>
+                      {result.section && (
+                        <div className="text-xs text-muted-foreground mt-1">
+                          {result.section}
+                        </div>
+                      )}
+                      <div className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                        {result.content}
+                      </div>
                     </button>
                   ))}
                 </div>
               )}
-              {showSearchResults && searchQuery.length >= 2 && searchResults.length === 0 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-popover border border-border rounded-lg shadow-lg z-50 px-4 py-3">
-                  <div className="text-sm text-muted-foreground">No results found for "{searchQuery}"</div>
-                </div>
-              )}
+              {showSearchResults &&
+                searchQuery.length >= 2 &&
+                searchResults.length === 0 && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-popover border border-border rounded-lg shadow-lg z-50 px-4 py-3">
+                    <div className="text-sm text-muted-foreground">
+                      No results found for "{searchQuery}"
+                    </div>
+                  </div>
+                )}
             </div>
           </div>
 
           {/* Top nav buttons */}
           <nav className="flex items-center gap-4">
             <Button asChild variant="ghost" size="icon" className="h-9 w-9">
-              <a href="https://github.com/RealMeddsam/Froststrap" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <a
+                href="https://github.com/RealMeddsam/Froststrap"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 30 30"
@@ -318,7 +356,12 @@ export const DocsLayout = () => {
               </a>
             </Button>
             <Button asChild variant="ghost" size="icon" className="h-9 w-9">
-              <a href="https://discord.gg/BeCRubaU" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+              <a
+                href="https://discord.gg/9nvJVuaqy4"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   shapeRendering="geometricPrecision"
@@ -345,7 +388,11 @@ export const DocsLayout = () => {
               aria-label="Toggle theme"
               className="h-9 w-9"
             >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </Button>
           </nav>
         </div>
@@ -379,9 +426,15 @@ export const DocsLayout = () => {
         <div
           ref={externalScrollRef}
           className="external-scrollbar fixed top-16 right-0 h-[calc(100vh-4rem)] overflow-y-auto overflow-x-hidden z-40"
-          style={{ width: `${SCROLLBAR_WIDTH_PX}px`, background: "transparent" }}
+          style={{
+            width: `${SCROLLBAR_WIDTH_PX}px`,
+            background: "transparent",
+          }}
         >
-          <div ref={externalScrollInnerRef} style={{ width: 1, pointerEvents: "none" }} />
+          <div
+            ref={externalScrollInnerRef}
+            style={{ width: 1, pointerEvents: "none" }}
+          />
         </div>
 
         {/* Main content */}
@@ -389,10 +442,10 @@ export const DocsLayout = () => {
           <main
             ref={mainScrollRef}
             className="pt-4 pl-4 pr-8 overflow-y-auto no-scrollbar"
-            style={{ 
-              WebkitOverflowScrolling: "touch", 
+            style={{
+              WebkitOverflowScrolling: "touch",
               height: "100%",
-              marginRight: `${TOC_WIDTH_PX + SCROLLBAR_WIDTH_PX}px`
+              marginRight: `${TOC_WIDTH_PX + SCROLLBAR_WIDTH_PX}px`,
             }}
           >
             <div className="max-w-4xl">
