@@ -14,6 +14,7 @@ import FastFlags from "./pages/guide/FastFlags";
 import Troubleshooting from "./pages/help/Troubleshooting";
 import Support from "./pages/help/Support";
 import NotFound from "./pages/NotFound";
+import Invite from "./pages/Invite";
 
 const queryClient = new QueryClient();
 
@@ -22,8 +23,7 @@ const App = () => (
     <ThemeProvider defaultTheme="dark">
       <TooltipProvider>
         <Toaster />
-  {/* Use Vite's BASE_URL so the router resolves routes under the repo subpath on GitHub Pages */}
-  <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/docs" element={<DocsLayout />}>
@@ -33,9 +33,13 @@ const App = () => (
               <Route path="guide/installation" element={<Installation />} />
               <Route path="guide/features" element={<Features />} />
               <Route path="guide/fastflags" element={<FastFlags />} />
-              <Route path="help/troubleshooting" element={<Troubleshooting />} />
+              <Route
+                path="help/troubleshooting"
+                element={<Troubleshooting />}
+              />
               <Route path="help/support" element={<Support />} />
             </Route>
+            <Route path="/invite" element={<Invite />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
