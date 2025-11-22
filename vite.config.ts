@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    allowedHosts: ["save-amendments-health-riverside.trycloudflare.com"],
+    allowedHosts: ["articles-revenue-leonard-restaurant.trycloudflare.com"],
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(
     Boolean,
