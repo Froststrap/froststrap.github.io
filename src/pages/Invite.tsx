@@ -5,6 +5,14 @@ import DiscordMeta from "../components/DiscordMeta";
 
 const WORKER_BASE = "https://roblox-proxy.proxy-roblox.workers.dev";
 
+const formatCompactNumber = (num?: number) => {
+  if (num === undefined || num === null) return "-";
+  return new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    maximumFractionDigits: 1,
+  }).format(num);
+};
+
 const buildRobloxUri = (
   placeId?: string | null,
   gameInstanceId?: string | null,
@@ -32,6 +40,9 @@ interface GameDetails {
   name: string;
   description: string;
   creator?: GameCreator;
+  playing?: number;
+  visits?: number;
+  maxPlayers?: number;
   [key: string]: unknown;
 }
 
@@ -144,7 +155,8 @@ const Invite: React.FC = () => {
                   Instance ID: <strong>{gameInstanceId}</strong>
                 </p>
 
-                <div className="flex gap-3 flex-wrap">
+                {/* Buttons */}
+                <div className="flex gap-3 flex-wrap mb-6">
                   {robloxUri && (
                     <a
                       href={robloxUri}
@@ -164,12 +176,58 @@ const Invite: React.FC = () => {
                       View Game on Roblox Website
                     </a>
                   )}
+
+                  {triedRedirect && (
+                    <p className="mt-4 text-gray-500 text-sm">
+                      If nothing opened, click “Open in Roblox”.
+                    </p>
+                  )}
                 </div>
 
-                {triedRedirect && (
-                  <p className="mt-3 text-gray-500 text-sm">
-                    If nothing opened, click “Open in Roblox”.
-                  </p>
+                {/* Game Stats Tab */}
+                {gameDetails && (
+                  <div className="border-t border-gray-600 pt-4">
+                    <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                      Game Stats
+                    </h3>
+                    <div className="grid grid-cols-3 gap-4">
+                      {/* Active / Playing */}
+                      <div className="bg-transparent p-3 rounded-lg text-center border border-gray-600">
+                        <div className="text-xs text-gray-300 mb-1">Active</div>
+                        <div className=" text-white text-lg">
+                          {formatCompactNumber(gameDetails.playing)}
+                        </div>
+                      </div>
+
+                      {/* Visits */}
+                      <div className="bg-transparent p-3 rounded-lg text-center border border-gray-600">
+                        <div className="text-xs text-gray-300 mb-1">Visits</div>
+                        <div className=" text-white text-lg">
+                          {formatCompactNumber(gameDetails.visits)}
+                        </div>
+                      </div>
+
+                      {/* Max Players */}
+                      <div className="bg-transparent p-3 rounded-lg text-center border border-gray-600">
+                        <div className="text-xs text-gray-300 mb-1">
+                          Server Size
+                        </div>
+                        <div className=" text-white text-lg">
+                          {gameDetails.maxPlayers}
+                        </div>
+                      </div>
+                    </div>
+                    {gameDetails.description && (
+                      <div className="mt-4">
+                        <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                          Description
+                        </h3>
+                        <div className="bg-transparent p-3 rounded-lg border border-gray-600 text-sm text-white whitespace-pre-wrap">
+                          {gameDetails.description}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 )}
               </>
             )}
