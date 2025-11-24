@@ -179,7 +179,7 @@ const Invite: React.FC = () => {
 
                   {triedRedirect && (
                     <p className="mt-4 text-gray-500 text-sm">
-                      If nothing opened, click “Open in Roblox”.
+                      If nothing opened, click “Join Game”.
                     </p>
                   )}
                 </div>
