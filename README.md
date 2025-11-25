@@ -1,1 +1,1 @@
-# This is for our [Website](https://realmeddsam.github.io/Froststrap-Website)
+# This is for our [Website](https://froststrap.github.io/)

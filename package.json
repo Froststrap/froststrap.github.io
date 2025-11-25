@@ -1,6 +1,6 @@
 {
   "name": "froststrap-website",
-  "homepage": "https://realmeddsam.github.io/Froststrap-Website/",
+  "homepage": "https://froststrap.netlify.app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -79,6 +79,7 @@
     "gh-pages": "^6.3.0",
     "globals": "^15.15.0",
     "lovable-tagger": "^1.1.11",
+    "netlify-cli": "^23.11.1",
     "postcss": "^8.5.6",
     "react-helmet-async": "^2.0.5",
     "react-snowfall": "^2.3.0",
