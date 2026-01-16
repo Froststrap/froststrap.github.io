@@ -31,7 +31,6 @@ export default function Home() {
 
   const repoOwner = "RealMeddsam";
   const repoName = "Froststrap";
-  const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
   useEffect(() => {
     // Fetch latest release
@@ -39,7 +38,6 @@ export default function Home() {
       `https://api.github.com/repos/${repoOwner}/${repoName}/releases/latest`,
       {
         headers: {
-          Authorization: `${GITHUB_TOKEN}`,
           Accept: "application/json",
         },
       },
@@ -64,7 +62,6 @@ export default function Home() {
     // Fetch repo info and all releases
     fetch(`https://api.github.com/repos/${repoOwner}/${repoName}`, {
       headers: {
-        Authorization: `${GITHUB_TOKEN}`,
         Accept: "application/json",
       },
     })
@@ -95,7 +92,7 @@ export default function Home() {
       .catch(() => {
         setRepoStats((prev) => ({ ...prev, license: "Unknown" }));
       });
-  }, [GITHUB_TOKEN]);
+  });
 
   // Get latest release
   const handleDownloadLatest = async () => {
@@ -105,7 +102,6 @@ export default function Home() {
         `https://api.github.com/repos/${repoOwner}/${repoName}/releases/latest`,
         {
           headers: {
-            Authorization: `Bearer ${GITHUB_TOKEN}`,
             Accept: "application/json",
           },
         },

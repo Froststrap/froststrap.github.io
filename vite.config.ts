@@ -5,7 +5,10 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === "development" ? "/" : "/Froststrap-Website/",
+  experimental: {
+    builder: "rolldown",
+  },
+  base: "/",
   server: {
     host: "::",
     port: 8080,
