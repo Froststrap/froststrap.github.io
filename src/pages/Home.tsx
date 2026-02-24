@@ -29,7 +29,7 @@ export default function Home() {
   // new state for download action
   const [isDownloading, setIsDownloading] = useState(false);
 
-  const repoOwner = "RealMeddsam";
+  const repoOwner = "Froststrap";
   const repoName = "Froststrap";
 
   useEffect(() => {
@@ -160,7 +160,7 @@ export default function Home() {
             <nav className="flex items-center gap-4">
               <Button asChild variant="ghost" size="icon" className="h-9 w-9">
                 <a
-                  href="https://github.com/RealMeddsam/Froststrap"
+                  href="https://github.com/Froststrap/Froststrap"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -267,7 +267,7 @@ export default function Home() {
 
               <Button asChild size="lg" variant="secondary" className="gap-2">
                 <a
-                  href="https://github.com/RealMeddsam/Froststrap"
+                  href="https://github.com/Froststrap/Froststrap"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -290,7 +290,7 @@ export default function Home() {
             {/* Stats Badges */}
             <div className="flex flex-wrap gap-3 justify-center z-10">
               <a
-                href="https://github.com/RealMeddsam/Froststrap/blob/main/LICENSE"
+                href="https://github.com/Froststrap/Froststrap/blob/main/LICENSE"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-secondary text-secondary-foreground rounded-lg text-sm hover:bg-secondary/80 transition-colors px-3 py-1.5 min-w-0"
@@ -315,7 +315,7 @@ export default function Home() {
               </a>
 
               <a
-                href="https://github.com/RealMeddsam/Froststrap/releases/latest"
+                href="https://github.com/Froststrap/Froststrap/releases/latest"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-secondary text-secondary-foreground rounded-lg text-sm hover:bg-secondary/80 transition-colors px-3 py-1.5 min-w-0"
@@ -342,7 +342,7 @@ export default function Home() {
               </a>
 
               <a
-                href="https://github.com/RealMeddsam/Froststrap"
+                href="https://github.com/Froststrap/Froststrap"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-secondary text-secondary-foreground rounded-lg text-sm hover:bg-secondary/80 transition-colors px-3 py-1.5 min-w-0"

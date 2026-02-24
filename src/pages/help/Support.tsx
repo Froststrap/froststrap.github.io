@@ -6,41 +6,47 @@ const Support = () => {
 
   return (
     <div className="prose prose-invert max-w-none">
-      <AnchorHeading id="support" level={1}>Support</AnchorHeading>
-      
+      <AnchorHeading id="support" level={1}>
+        Support
+      </AnchorHeading>
+
       <p className="text-lg text-muted-foreground mb-8">
         Need help? We're here to assist you through various channels.
       </p>
 
       <div className="grid gap-6 md:grid-cols-2 my-8">
-      
         <a
           href="https://discord.gg/KdR9vpRcUN"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-6 rounded-lg bg-card border border-border hover:border-primary/50 transition-colors no-underline">
+          className="p-6 rounded-lg bg-card border border-border hover:border-primary/50 transition-colors no-underline"
+        >
           <MessageCircle className="w-8 h-8 text-primary mb-3" />
           <h3 className="text-xl font-semibold mb-2">Community Discord</h3>
           <p className="text-muted-foreground">
-            Join our Discord server to chat with other users and get real-time help.
+            Join our Discord server to chat with other users and get real-time
+            help.
           </p>
         </a>
 
-      
         <a
-          href="https://github.com/RealMeddsam/Froststrap/issues"
+          href="https://github.com/Froststrap/Froststrap/issues"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-6 rounded-lg bg-card border border-border hover:border-primary/50 transition-colors no-underline">
+          className="p-6 rounded-lg bg-card border border-border hover:border-primary/50 transition-colors no-underline"
+        >
           <Github className="w-8 h-8 text-primary mb-3" />
           <h3 className="text-xl font-semibold mb-2">GitHub Issues</h3>
           <p className="text-muted-foreground">
-            Report bugs, request features, or browse existing issues on our GitHub repository.
+            Report bugs, request features, or browse existing issues on our
+            GitHub repository.
           </p>
         </a>
       </div>
 
-      <AnchorHeading id="before-requesting-support" level={2}>Before Requesting Support</AnchorHeading>
+      <AnchorHeading id="before-requesting-support" level={2}>
+        Before Requesting Support
+      </AnchorHeading>
       <div className="p-6 rounded-lg bg-muted/30 border border-border mb-6">
         <p className="text-muted-foreground mb-4">
           To help us assist you more effectively, please provide:
@@ -53,7 +59,6 @@ const Support = () => {
           <li>The log file</li>
         </ul>
       </div>
-
     </div>
   );
 };
