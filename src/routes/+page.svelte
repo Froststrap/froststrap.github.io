@@ -5,7 +5,7 @@
 
 <main class="py-20 flex flex-col items-center">
   <div class="flex gap-4 items-center">
-    <img class="w-18 h-18" draggable=false src="favicon.ico" alt="logo"/>
+    <img class="w-16 h-16" draggable=false src="favicon.ico" alt="logo"/>
     <h1 class="font-bold text-5xl text-primary-header">Froststrap</h1>
   </div>
   <p class="text-demuted text-center mt-1">A Roblox bootstrapper forked from Fishstrap<br/> with Linux and macOS support added</p>
@@ -36,6 +36,21 @@
       </svg>
       GitHub
     </a>
+  </div>
+  <div class="flex gap-4">
+    <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
+    <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
+    <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
+  </div>
+  <div class="flex gap-4">
+    <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
+    <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
+    <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
+  </div>
+  <div class="flex gap-4">
+    <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
+    <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
+    <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
   </div>
   <div class="flex gap-4">
     <div class="bg-card-background rounded-lg w-140 h-90 mt-20"></div>
