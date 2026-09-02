@@ -5,11 +5,11 @@
 
 <main class="py-20 flex flex-col items-center">
   <div class="flex gap-4 items-center">
-    <img class="w-18 h-18" src="favicon.ico"/>
+    <img class="w-18 h-18" draggable=false src="favicon.ico" alt="logo"/>
     <h1 class="font-bold text-5xl text-primary-header">Froststrap</h1>
   </div>
   <p class="text-demuted text-center mt-1">A Roblox bootstrapper forked from Fishstrap<br/> with Linux and macOS support added</p>
-  <div class="flex mt-5 gap-4">
+  <div class="flex mt-5 gap-4 select-none">
     <a
       class="flex gap-2 pl-4.5 bg-primary-header/10
              hover:bg-primary-header/20 onclick:bg-primary-header
