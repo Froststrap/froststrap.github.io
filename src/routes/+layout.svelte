@@ -6,7 +6,7 @@
 	import Footer from '#lib/Footer.svelte'
 </script>
 
-<svelte:head><link rel="icon" href="/favicon.ico" /></svelte:head>
+<svelte:head><link rel="icon" href="/favicon.png" /></svelte:head>
 <Header/>
 <main>
 {@render children()}

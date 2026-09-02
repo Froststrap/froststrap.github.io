@@ -5,7 +5,7 @@
 
 <main class="py-20 flex flex-col items-center">
   <div class="flex gap-4 items-center">
-    <img class="w-16 h-16" draggable=false src="favicon.ico" alt="logo"/>
+    <img class="w-16 h-16" draggable=false src="/favicon.png" alt="logo"/>
     <h1 class="font-bold text-5xl text-primary-header">Froststrap</h1>
   </div>
   <p class="text-demuted text-center mt-1">A Roblox bootstrapper forked from Fishstrap<br/> with Linux and macOS support added</p>
